@@ -13,5 +13,5 @@ docker-compose up -d
 ```
 
 ```
-docker-compose exec flask_api python cli.py --amount=10 --input_currency=CZK --output_currency=$
+docker-compose exec flask_api python cli.py --amount=100 --input_currency=¥ --output_currency=$
 ```
