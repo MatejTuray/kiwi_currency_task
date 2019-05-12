@@ -63,10 +63,7 @@ class Convertor:
             input_in_eur = float(amount) * float(eur_rate)
             output = {}
             for curr in rates:
-                if (
-                    curr["currency"] == "EUR"
-                    or curr["currency"] == input_currency.upper()
-                ):
+                if curr["currency"] == input_currency.upper():
                     pass
                 else:
                     output[f"{curr['currency']}"] = input_in_eur * float(
