@@ -12,5 +12,10 @@ output = json.dumps(r, indent=4, sort_keys=True, ensure_ascii=False)
 
 
 def generateFile(data):
-    with open("./utils/countries_currencies.json", "w", encoding="utf-8") as outfile:
+    with open(
+        "./utils/countries_currencies.json", "w", encoding="utf-8"
+    ) as outfile:
         outfile.write(data)
+
+
+generateFile()
