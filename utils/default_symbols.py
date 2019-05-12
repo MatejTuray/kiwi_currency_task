@@ -1,0 +1,15 @@
+default_symbols = {
+    "USD": "$",
+    "GBP": "£",
+    "CNY": "¥",
+    "SEK": "kr",
+    "INR": "₹",
+    "BDT": "৳",
+    "BGN": "лв",
+    "CHF": "Fr",
+    "MUR": "₨",
+    "NGN": "₦",
+    "KRW": "₩",
+    "VND": "₫",
+    "AWG": "ƒ",
+}

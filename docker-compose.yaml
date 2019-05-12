@@ -1,0 +1,44 @@
+version: "3"
+services:
+  flask_api:
+    build:
+      context: .
+    depends_on:
+      - db
+      - redis_cache
+    ports:
+      - 5000:5000
+    environment:
+      - PY_IGNORE_IMPORTMISMATCH=1
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:admin@db:5432/kiwi_flask
+      - REDIS_URL=redis://redis_cache:6379
+    entrypoint:
+      - /bin/ash
+      - db_init_seed.sh
+  db:
+    image: postgres:10-alpine
+    ports:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=kiwi_flask
+    volumes:
+      - /srv/docker/postgresql:/var/lib/postgresql
+  redis_cache:
+    image: redis:5.0.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    volumes:
+      - ../data/redis:/data
+  pgadmin:
+    image: dpage/pgadmin4
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "80:80"

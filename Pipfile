@@ -1,0 +1,37 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==18.9b0"
+flake8 = "*"
+
+
+[packages]
+requests-html = "*"
+click = "*"
+flask="*"
+flask_restplus="*"
+flask_script="*"
+flask_migrate="*"
+marshmallow="*"
+flask_sqlalchemy="*"
+flask_marshmallow="*"
+marshmallow-sqlalchemy="*"
+psycopg2="*"
+python-slugify = "*"
+redis="*"
+pytest="*"
+pytest-flask="*"
+pytest-cov="*"
+PyInquirer="*"
+prompt_toolkit = "==1.0.14"
+codecov="*"
+python-dotenv="*"
+Sphinx="*"
+sphinxcontrib-apidoc="*"
+
+
+[requires]
+python_version = "3.7"
