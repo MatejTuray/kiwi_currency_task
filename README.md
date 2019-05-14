@@ -33,7 +33,7 @@ python -m pytest
 ```
 While compose network is up
 ```
-docker-compose exec flask_api python cli.py --amount=100 --input_currency=¥ --output_currency=$
+docker-compose exec flask_api python -m pytest
 ```
 
 
