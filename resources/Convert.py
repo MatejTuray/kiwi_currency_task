@@ -86,7 +86,6 @@ def fetch_calculate_all(args):
             result = cnv.calculate_all(
                 args["amount"], args["input_currency"], exchange_rates
             )
-            print(result)
             return result
         except Exception:
             raise ValueError(

@@ -44,7 +44,6 @@ def test_code_from_symbol_from_excluded():
 
 def test_code_from_symbol_is_unique(client):
     result = code_from_symbol("Kč", excluded_currencies=default_symbols)
-    print(result)
     assert result == "CZK"
 
 

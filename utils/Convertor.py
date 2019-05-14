@@ -106,7 +106,6 @@ class Convertor:
             }
             return result
         except Exception as e:
-            print(e)
             raise ValueError(
                 f"Unable to convert between {input_currency}"
                 f"and {output_currency}"
