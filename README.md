@@ -27,10 +27,15 @@ API comes with interactive Swagger UI: `/api/docs` endpoint
 
 ## Tests
 
-To run tests:
+To run tests (in pipenv shell):
 ```
 python -m pytest
 ```
+While compose network is up
+```
+docker-compose exec flask_api python cli.py --amount=100 --input_currency=¥ --output_currency=$
+```
+
 
 ## Parameters
 
