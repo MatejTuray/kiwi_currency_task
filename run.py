@@ -8,7 +8,7 @@ dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path)
 
 
-redis_url = os.environ.get("REDIS_URL", "redis://redis_cache:6379")
+redis_url = os.environ.get("REDIS_URL")
 redis = redis.StrictRedis(socket_connect_timeout=3).from_url(redis_url)
 
 

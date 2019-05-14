@@ -10,7 +10,7 @@ def test_get_single_rate(input_currency="EUR", output_currency="USD"):
 
 
 def test_raise_exception_single(input_currency="foo", output_currency="bar"):
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         assert cnv.get_single_rate(input_currency, output_currency)
 
 
@@ -35,8 +35,13 @@ def test_calculate(amount=10, input_currency="EUR", output_currency="USD"):
 def test_calculate_raises(
     amount=10, input_currency="saasdd", output_currency="gdgdsdhh"
 ):
-    with pytest.raises(Exception):
-        assert cnv.calculate(amount, input_currency, output_currency)
+    with pytest.raises(ValueError):
+        assert cnv.calculate(
+            amount,
+            input_currency,
+            output_currency,
+            cnv.get_single_rate(input_currency, output_currency),
+        )
 
 
 def test_calculate_all(amount=10, input_currency="USD"):
@@ -48,5 +53,5 @@ def test_calculate_all(amount=10, input_currency="USD"):
 
 
 def test_calculate_all_raises(amount=10, input_currency="saasdd"):
-    with pytest.raises(Exception):
-        assert cnv.calculate_all(amount, input_currency)
+    with pytest.raises(ValueError):
+        assert cnv.calculate_all(amount, input_currency, cnv.get_all_rates())

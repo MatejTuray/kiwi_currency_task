@@ -30,16 +30,15 @@ class CountriesResource(Resource):
                 Country.name.ilike(f"%{args['name']}%")
             ).all()
             countries = countries_schema.dump(countries).data
-            if len(countries) != 0:
+            if countries:
                 return {"status": "success", "data": countries}, 200, {}
-            else:
-                return (
-                    {"status": "not_found", "message": "Country not found"},
-                    404,
-                    {},
-                )
 
-        else:
-            countries = Country.query.all()
-            countries = countries_schema.dump(countries).data
-            return {"status": "success", "data": countries}, 200, {}
+            return (
+                {"status": "not_found", "message": "Country not found"},
+                404,
+                {},
+            )
+
+        countries = Country.query.all()
+        countries = countries_schema.dump(countries).data
+        return {"status": "success", "data": countries}, 200, {}

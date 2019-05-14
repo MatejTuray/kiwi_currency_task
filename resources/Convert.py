@@ -50,17 +50,17 @@ def fetch_and_calculate_single(args):
                 f"Unable to convert from {args['input_currency']} "
                 f"to {args['output_currency']}"
             )
-    else:
-        try:
-            result = cnv.calculate(
-                args["amount"],
-                args["input_currency"],
-                args["output_currency"],
-                float(rate),
-            )
-            return result
-        except Exception as e:
-            raise ValueError(e)
+
+    try:
+        result = cnv.calculate(
+            args["amount"],
+            args["input_currency"],
+            args["output_currency"],
+            float(rate),
+        )
+        return result
+    except Exception as e:
+        raise ValueError(e)
 
 
 def fetch_calculate_all(args):
@@ -92,11 +92,11 @@ def fetch_calculate_all(args):
             raise ValueError(
                 f"Unable to calculate output for ${args['input_currency']}"
             )
-    else:
-        result = cnv.calculate_all(
-            args["amount"], args["input_currency"], json.loads(rates)
-        )
-        return result
+
+    result = cnv.calculate_all(
+        args["amount"], args["input_currency"], json.loads(rates)
+    )
+    return result
 
 
 class ConvertResource(Resource):
@@ -141,11 +141,10 @@ class ConvertResource(Resource):
                         404,
                         {},
                     )
-                else:
-                    return {"status": "success", "data": data}, 200, {}
 
-            else:
-                data = fetch_calculate_all(args)
                 return {"status": "success", "data": data}, 200, {}
+
+            data = fetch_calculate_all(args)
+            return {"status": "success", "data": data}, 200, {}
         except ValueError as e:
             return {"status": "bad_request", "message": str(e)}, 400, {}

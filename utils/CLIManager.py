@@ -41,10 +41,10 @@ class CLIManager:
 
                 answers = prompt(questions, style=default_style)
                 return answers["currency"]
-            else:
-                return res["symbols"][0]["value"]
-        else:
-            return currency
+
+            return res["symbols"][0]["value"]
+
+        return currency
 
     def calculate(self, amount, input_currency, output_currency):
         """
@@ -70,16 +70,16 @@ class CLIManager:
                 indent=4,
                 ensure_ascii=False,
             )
-        else:
-            input_currency = self.parse_and_prompt(input_currency)
-            output_currency = self.parse_and_prompt(output_currency)
-            return json.dumps(
-                self.cnv.calculate(
-                    amount,
-                    input_currency,
-                    output_currency,
-                    self.cnv.get_single_rate(input_currency, output_currency),
-                ),
-                indent=4,
-                ensure_ascii=False,
-            )
+
+        input_currency = self.parse_and_prompt(input_currency)
+        output_currency = self.parse_and_prompt(output_currency)
+        return json.dumps(
+            self.cnv.calculate(
+                amount,
+                input_currency,
+                output_currency,
+                self.cnv.get_single_rate(input_currency, output_currency),
+            ),
+            indent=4,
+            ensure_ascii=False,
+        )

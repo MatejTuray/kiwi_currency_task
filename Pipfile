@@ -29,8 +29,6 @@ PyInquirer="*"
 prompt_toolkit = "==1.0.14"
 codecov="*"
 python-dotenv="*"
-Sphinx="*"
-sphinxcontrib-apidoc="*"
 
 
 [requires]

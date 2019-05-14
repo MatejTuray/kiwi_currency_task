@@ -8,9 +8,7 @@ load_dotenv(dotenv_path)
 basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-SQLALCHEMY_DATABASE_URI = os.getenv(
-    "SQLALCHEMY_DATABASE_URI", "postgresql://postgres:admin@db:5432/kiwi_flask"
-)
+SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 
 
 SWAGGER_UI_REQUEST_DURATION = True

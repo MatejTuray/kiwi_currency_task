@@ -19,10 +19,23 @@ def test_countries_resource(client):
 def test_not_found(client):
     response = client.get("/api/countries?name=FooBar")
     assert response.status_code == 404
-    assert response.json == {"status": "not_found", "message": "Country not found"}
+    assert response.json == {
+        "status": "not_found",
+        "message": "Country not found",
+    }
 
 
 def test_bad_arg(client):
     response = client.get("/api/countries?arg=Foo")
     assert response.status_code == 400
     assert response.json == {"message": "Unknown arguments: arg"}
+
+
+def test_empty_response(client):
+    response = client.get("/api/countries?name=FooBar")
+    assert response.status_code == 404
+    assert response.json == {
+        "status": "not_found",
+        "message": "Country not found",
+    }
+

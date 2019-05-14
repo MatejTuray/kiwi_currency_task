@@ -68,7 +68,7 @@ def code_from_symbol(input_symbol=None, excluded_currencies={}):
         else:
             return input_symbol
     except Exception:
-        raise ValueError(f"Unable to convert from {input_symbol}")
+        raise ValueError(f"Unable to parse {input_symbol}")
 
 
 def all_symbols():
@@ -181,18 +181,16 @@ class SymbolResource(Resource):
             response = fetch_currencies_by_symbol(
                 urllib.parse.unquote(args["symbol"])
             )
-            if len(response) != 0:
+            if response:
                 return ({"status": "success", "symbols": response}, 200, {})
 
-            else:
+            return (
+                {
+                    "status": "not_found",
+                    "message": "Requested symbol was not found",
+                },
+                404,
+                {},
+            )
 
-                return (
-                    {
-                        "status": "not_found",
-                        "message": "Requested symbol was not found",
-                    },
-                    404,
-                    {},
-                )
-        elif args["symbol"] is None:
-            return ({"status": "success", "symbols": all_symbols()}, 200, {})
+        return ({"status": "success", "symbols": all_symbols()}, 200, {})

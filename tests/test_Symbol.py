@@ -53,9 +53,8 @@ def test_code_from_symbol_is_first_applicable(client):
     assert result is not None
 
 
-def test_code_from_symbol_raises(client):
-    with pytest.raises(Exception):
-        assert code_from_symbol(
-            "Kčasfasgsa", excluded_currencies=default_symbols
-        )
+def test_code_from_symbol_invalid(client):
+    assert (
+        code_from_symbol("Kčasfasgsa", excluded_currencies=default_symbols)
+    ) is None
 
