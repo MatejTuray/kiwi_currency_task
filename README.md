@@ -38,7 +38,3 @@ API comes with interactive Swagger UI: `/api/docs` endpoint
 ## Output
 
 - json
-
-```
-
-```
