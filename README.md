@@ -25,6 +25,13 @@ CLI handles symbols with multiple currencies by prompting the user to specify cu
 
 API comes with interactive Swagger UI: `/api/docs` endpoint
 
+## Tests
+
+To run tests:
+```
+python -m pytest
+```
+
 ## Parameters
 
 - `amount` - amount which we want to convert - float
